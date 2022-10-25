@@ -90,12 +90,12 @@ def capture_existing_Unit():
         try:
             unit = input("Enter conversion unit: ")
             if unit not in valid_units:
-                print('Please enter a valid unit to convert to') 
+                print('Please enter a valif unit to convert from') 
             else:
               
                 return getDerivedUnit(unit);
         except ValueError:
-            print('Please enter a valid unit to convert to')   
+            print('Please enter a valif unit to convert from')   
 
 def capture_conversion_unit(existingUnit):
      while True:
@@ -121,7 +121,7 @@ def main_routine ():
     # decoration + instruction
     print("**** Ultimate Conversion Calculator ****")
     instruction = input("Press <enter> for instructions or any other key to skip: ")
-    read_instructions = "Ultimate Conversion Calculator is extremely efficient for calculating things such as distance(km, cm, m, mm), time(hours, minutes, seconds) and weights(g, kg, mg)"
+    read_instructions = "Ultimate Conversion Calculator is extremely efficient for calculating things such as distance(km, cm, m, mm), time(hrs, min, sec) and weights(g, kg, mg)"
 
     if instruction == "":
         print(read_instructions)
@@ -139,7 +139,7 @@ def main_routine ():
     print("Thanks for using Ultimate Conversion Calculator")
 
 # main routine starts here
-main_routine();
+main_routine()
 
 
         
