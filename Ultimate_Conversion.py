@@ -47,6 +47,8 @@ def convert_to_unit(number,unit, unitc):
             "g_to_kg" : number/1000,
             "kg_to_kg" : number,
             "g_to_g" : number,
+             "kg_to_g" : number*1000,
+             "mg_to_g" : number/1000,
             "hrs_to_min":number/60,
             "min_to_sec":number*60,
             "hrs_to_sec" : number*3600,
@@ -56,6 +58,7 @@ def convert_to_unit(number,unit, unitc):
             "sec_to_hrs" : number/3600,
             "sec_to_min" : number/60,
             "sec_to_sec" : number,
+           
     };
     return convertionTable[unit+"_to_"+unitc]
 
