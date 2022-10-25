@@ -1,97 +1,66 @@
-# Title - Invitation + decoration
+hours = ["hrs", "hr", "hours", "hour"]
+minutes = ["min","mins", "minutes"]
+seconds = ["sec", "secs", "second", "seconds"]
+distance = ["km","mm","m","cm"]
+time = ["hours", "hour", "hr", "hrs", "min", "minutes", "sec", "seconds"]
+weight = ["g","kg","mg"]
+valid_units = ["km", "mm", "cm", "m", "kg", "g", "mg" , "min", "minutes", "sec", "seconds", "hours", "hrs", "hour", "hr"]
+
 def num_check(number):
-    if number < 1:
+    if number < 0.1:
         return False;
     else: 
         return True;
 
+def getDerivedUnit(inputUnit) :
+    if( inputUnit in hours):
+        return "hrs";
+    elif (inputUnit in minutes):
+        return "min";
+    elif (inputUnit in seconds):
+        return "sec";
+    else:
+        return inputUnit;
+
 
 def convert_to_unit(number,unit, unitc):
-
-    hours = {"hrs", "hr", "hours", "hour"}
-    minutes = {"min","mins", "minutes"}
-    seconds = {"sec", "secs", "second", "seconds"}
-
-    if unit == 'mm'and unitc == "m":
-        return number/1000
-        
-    elif unit == 'km' and unitc == "m":
-        return number * 1000;
-    elif unit == 'cm' and unitc == "m":
-        return number /100;
-    elif unit == "mm" and unitc == "km":
-        return number/1000000
-    elif unit == "cm" and unitc == "km":
-        return number/100000
-    elif unit == "m" and unitc == "km":
-        return number/1000
-    elif unit == "km" and unitc == "cm":
-        return number*100000
-    elif unit == "m" and unitc == "cm":
-        return number*100
-    elif unit == "mm" and unitc == "cm":
-        return number/100
-    elif unit == "cm" and unitc == "mm":
-        return number*10
-    elif unit == "m" and unitc == "mm":
-        return number*1000
-    elif unit == "km" and unitc == "mm":
-        return number*1000000
-    elif unit == "km" and unitc == "km":
-        return number
-    elif unit == "mm" and unitc == "mm":
-        return number
-    elif unit == "m" and unitc == "m":
-        return number
-    elif unit == "cm" and unitc == "cm":
-        return number
-    elif unit == "kg" and unitc == "mg":
-        return number*1000000
-    elif unit == "g" and unitc == "mg":
-        return number/1000
-    elif unit == "mg" and unitc == "mg":
-        return number
-    elif unit == "mg" and unitc == "kg":
-        return number/1000000
-    elif unit == "g" and unitc == "kg":
-        return number/1000
-    elif unit == "kg" and unitc == "kg":
-        return number
-    elif unit == 'mg' and unitc == "g":
-        return number*1000
-    elif unit == "kg" and unitc == "g":
-        return number*1000
-    elif unit == "g" and unitc == "g":
-        return number
-    elif unit  in hours and unitc in minutes:
-        return number*60
-    elif unit in seconds and unitc in minutes:
-        return number/60
-    elif unit in minutes and unitc in minutes:
-        return number
-    elif unit in seconds and unitc in seconds:
-        return number
-    elif unit in minutes and unitc in seconds:
-        return number*60
-    elif unit in hours and unitc in seconds:
-        return number*3600
-    elif unit in seconds and unitc in hours:
-        return number/3600
-    elif unit  in hours and unitc in hours:
-        return number
-    elif unit in minutes and unitc in hours:
-        return number/60
-
-  
+    convertionTable = {
+            "m_to_km" : number/1000,
+            "km_to_m" : number*1000,
+            "cm_to_km" : number*100000,
+            "cm_to_m" : number/100,
+            "mm_to_km" : number/1000000,
+            "km_to_cm" : number*100000,
+            "m_to_cm" : number*100,
+            "mm_to_cm" : number/100,
+            "cm_to_mm" : number*10,
+            "m_to_mm" : number*1000,
+            "km_to_mm" : number*1000000,
+            "km_to_km" : number,
+            "mm_to_mm" : number,
+            "m_to_m" : number,
+            "cm_to_cm": number,
+            "kg_to_mg" : number*1000000,
+            "g_to_mg" : number*1000,
+            "mg_to_mg": number,
+            "mg_to_kg" : number/1000000,
+            "g_to_kg" : number/1000,
+            "kg_to_kg" : number,
+            "g_to_g" : number,
+            "hrs_to_min":number/60,
+            "min_to_sec":number*60,
+            "hrs_to_sec" : number*3600,
+            "hrs_to_hrs" : number,
+            "min_to_hrs" : number/60,
+            "min_to_min" : number,
+            "sec_to_hrs" : number/3600,
+            "sec_to_min" : number/60,
+            "sec_to_sec" : number,
+    };
+    return convertionTable[unit+"_to_"+unitc]
 
 
 def is_conversion_valid(existing_unit,conversion_unit):
-
-    distance = {"km","mm","m","cm"}
-    time = {"hours", "hour", "hr", "hrs", "min", "minutes", "sec", "seconds"}
-    weight = {"g","kg","mg"}
-
-    
     if existing_unit in distance and conversion_unit  in distance:
        
         return True
@@ -104,20 +73,11 @@ def is_conversion_valid(existing_unit,conversion_unit):
     else: 
         
         return False;
-    
-
-    
-        
-           
-
-       
-
-
 
 def captureNumber():
      while True:
         try:
-            amount = float(input("Enter the integer value: "))
+            amount = float(input("Enter value of conversion: "))
             if (num_check(amount)) is True:
                 return amount;
             else:
@@ -125,46 +85,47 @@ def captureNumber():
         except ValueError:
             print('Please enter a valid integer')     
 
-
 def capture_existing_Unit():
     while True:
         try:
             unit = input("Enter conversion unit: ")
-            if (unit != 'km' and unit != 'mm' and unit != 'cm' and unit != "m" and unit != "kg" and unit != "g" and unit != "mg" and unit != "min" and unit != "minutes" and unit != "sec" and unit != "seconds" and unit != "hours" and unit != "hrs" and unit != "hour" and unit != "hr"):
-                print('Please enter valid conversion unit') 
+            if unit not in valid_units:
+                print('Please enter a valid unit to convert to') 
             else:
-                return unit;
+              
+                return getDerivedUnit(unit);
         except ValueError:
-            print('Please enter valid conversion unit')   
+            print('Please enter a valid unit to convert to')   
 
 def capture_conversion_unit(existingUnit):
      while True:
         try:
             unit = input("Enter unit to convert to:  ")
-            if (unit != 'km' and unit != 'mm' and unit != 'cm' and unit != "m" and unit != "kg" and unit != "g" and unit != "mg"and unit != "min" and unit != "minutes" and unit != "sec" and unit != "seconds" and unit != "hours" and unit != "hrs" and unit != "hour" and unit != "hr"):
+            if unit not in valid_units:
                 print('Please enter valid unit to convert to') 
             elif is_conversion_valid(existingUnit, unit ) is False:
                 print("Please enter a valid conversion unit")
             else:
-                return unit;
+                return getDerivedUnit(unit);
         except ValueError:
             print('Please enter valid conversion unit')   
 
-  
-# decoration + instruction
-print("**** Ultimate Conversion Calculator ****")
-instruction = input("Press <enter> for instructions or any other key to skip: ")
 
-read_instructions = "Ultimate Conversion Calculator is extremely efficient for calculating things such as distance(km, cm, m, mm), time(hours, minutes, seconds) and weights(g, kg, mg)"
-
-if instruction == "":
-    print(read_instructions)
-
-    
-
-
+def convertToInteger(inputNumber):
+    if (float(inputNumber).is_integer()):
+        return int(inputNumber);
+    else:
+        return inputNumber;
 
 def main_routine ():
+    # decoration + instruction
+    print("**** Ultimate Conversion Calculator ****")
+    instruction = input("Press <enter> for instructions or any other key to skip: ")
+    read_instructions = "Ultimate Conversion Calculator is extremely efficient for calculating things such as distance(km, cm, m, mm), time(hours, minutes, seconds) and weights(g, kg, mg)"
+
+    if instruction == "":
+        print(read_instructions)
+
     while True:
         
         inputAmount = captureNumber();
@@ -172,13 +133,10 @@ def main_routine ():
         conversionUnit = capture_conversion_unit(existingunit)
         
         unitConversionResult = convert_to_unit(inputAmount,existingunit, conversionUnit);
-        print(inputAmount ,existingunit , "is" , unitConversionResult , conversionUnit);
+        print(convertToInteger(inputAmount) ,existingunit , "is" , convertToInteger(unitConversionResult) , conversionUnit);
         repeat = input("Press <Enter> to make another calculation or anything else to quit")
         if repeat != "": break;
-
-
     print("Thanks for using Ultimate Conversion Calculator")
-
 
 # main routine starts here
 main_routine();
