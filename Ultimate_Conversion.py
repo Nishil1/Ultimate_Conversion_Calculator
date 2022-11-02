@@ -81,7 +81,7 @@ def captureNumber():
             else:
                 print('Please enter a value more than 0 ') 
         except ValueError:
-            print('Please enter a number that is more than zero')     
+            print('Please enter a valid numerical/decimal value')     
 # checks whether inputted conversion unit is a valid unit
 def capture_existing_Unit():
     while True:      
