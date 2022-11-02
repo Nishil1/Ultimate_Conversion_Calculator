@@ -117,7 +117,4 @@ def main_routine ():
         if repeat != "": break;
     print("Thanks for using Ultimate Conversion Calculator")
 # main routine starts here
-main_routine()
-
-
-        
+main_routine()       
