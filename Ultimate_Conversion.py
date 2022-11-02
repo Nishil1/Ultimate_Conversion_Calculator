@@ -25,7 +25,6 @@ def getDerivedUnit(inputUnit) :
         return "sec";
     else:
         return inputUnit;
-
 # function to convert one measurement to another
     # base unit is cm
 def convert_to(number, existing_unit, conversion_unit):
@@ -33,20 +32,17 @@ def convert_to(number, existing_unit, conversion_unit):
         "cm" :  1,
         "mm" :  1/10,
         "km" :  100000,
-        "m" :  100,
-    }
+        "m" :  100,}
     # base unit is minutes
     time = {
         "min" :  1,
         "hrs" :  60,
-        "sec" : 1/60
-    }
+        "sec" : 1/60}
     # base unit is kg
     weigh = {
         "kg":  1,
         "g" :  1/1000,
-        "mg" :  1/1e+6
-    }
+        "mg" :  1/1e+6}
     values = dis | time | weigh
     convert_to_base = number * values[existing_unit]
     converted = convert_to_base/values[conversion_unit]
@@ -54,16 +50,12 @@ def convert_to(number, existing_unit, conversion_unit):
 # checks whether the 2 entered conversions match and are valid to convert
 def is_conversion_valid(existing_unit,conversion_unit):
     if existing_unit in distance and conversion_unit  in distance:
-       
         return True
     elif existing_unit in time and conversion_unit  in time:
-        
         return True
     elif existing_unit in weight and conversion_unit  in weight:
-       
         return True
     else: 
-        
         return False;
 # function that checks whether result of conversion is an integer, in that case print whole number
 def convertToInteger(inputNumber):
@@ -81,7 +73,7 @@ def captureNumber():
             else:
                 print('Please enter a value more than 0 ') 
         except ValueError:
-            print('Please enter a valid numerical/decimal value')     
+            print('please enter a valid number')     
 # checks whether inputted conversion unit is a valid unit
 def capture_existing_Unit():
     while True:      
