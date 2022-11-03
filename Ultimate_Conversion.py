@@ -1,30 +1,19 @@
-# All valid units and individual lists containing several valid inputs for that conversion(eg. hours)
-hours = ["hrs", "hr", "hours", "hour"]
-minutes = ["min","mins", "minutes"]
-seconds = ["sec", "secs", "second", "seconds"]
-distance = ["km","mm","m","cm"]
-time = ["hours", "hour", "hr", "hrs", "min", "minutes", "sec", "seconds", "mins"]
-weight = ["g","kg","mg"]
-valid_units = ["km", "mm", "cm", "m", "kg", "g", "mg" , "min", "minutes", "sec", "seconds", "hours", "hrs", "hour", "hr", "mins"]
-for_distance = {"distance", "d", "dis", "Distance"}
-for_time = {"time", "t", "Time"}
-for_weights = {"Weights", "weight", "weights", "w", "Weights"}
 # number checking function
 def num_check(number):
     if number <= 0:
-        return False;
+        return False
     else: 
-        return True;
+        return True
 # gets input from lists in like 1-3 and returns a string so that conversion table works
 def getDerivedUnit(inputUnit) :
     if( inputUnit in hours):
-        return "hrs";
+        return "hrs"
     elif (inputUnit in minutes):
-        return "min";
+        return "min"
     elif (inputUnit in seconds):
-        return "sec";
+        return "sec"
     else:
-        return inputUnit;
+        return inputUnit
 # function to convert one measurement to another
     # base unit is cm
 def convert_to(number, existing_unit, conversion_unit):
@@ -56,20 +45,20 @@ def is_conversion_valid(existing_unit,conversion_unit):
     elif existing_unit in weight and conversion_unit  in weight:
         return True
     else: 
-        return False;
+        return False
 # function that checks whether result of conversion is an integer, in that case print whole number
 def convertToInteger(inputNumber):
     if (float(inputNumber).is_integer()):
-        return int(inputNumber);
+        return int(inputNumber)
     else:
-        return inputNumber;
+        return inputNumber
 # checks that value of conversion is a valid input
 def captureNumber():
      while True:
         try:
             amount = convertToInteger(float(input("Enter value of conversion: ")))
             if (num_check(amount)) is True:
-                return amount;
+                return amount
             else:
                 print('Please enter a value more than 0 ') 
         except ValueError:
@@ -81,7 +70,7 @@ def capture_existing_Unit():
             if (unit) not in valid_units:
                 print('Please enter a valid unit to convert from') 
             else:              
-                return getDerivedUnit(unit);
+                return getDerivedUnit(unit)
 # checks whether inputted convert to unit is a valid unit to convert to
 def capture_conversion_unit(existingUnit):
      while True:      
@@ -91,13 +80,19 @@ def capture_conversion_unit(existingUnit):
             elif is_conversion_valid(existingUnit, unit ) is False:
                 print("Please enter a valid conversion unit")
             else:
-                return getDerivedUnit(unit);
+                return getDerivedUnit(unit)
 # main routine function
 def main_routine ():
     # decoration + instruction
+    print("****************************************")
     print("**** Ultimate Conversion Calculator ****")
+    print("****************************************")
     instruction = input("Press <enter> for instructions or any other key to skip: ")
-    read_instructions = "Ultimate Conversion Calculator is extremely efficient for calculating things such as distance(km, cm, m, mm), time(hrs, min, sec) and weights(g, kg, mg)"
+    read_instructions = """
+    Ultimate Conversion Calculator is extremely efficent for
+    calculating things such as distance(km, cm, m, mm), 
+    time(hrs, min, sec) and weights(g, kg, mg)"
+     """
     if instruction == "":
         print(read_instructions)
     while True:        
@@ -107,6 +102,17 @@ def main_routine ():
         convert_to(inputAmount, existingunit, conversionUnit)
         repeat = input("Press <Enter> to make another calculation or anything else to quit")
         if repeat != "": break;
-    print("Thanks for using Ultimate Conversion Calculator")
+    print("**** Thanks for using Ultimate Conversion Calculator ****")
 # main routine starts here
+# All valid units and individual lists containing several valid inputs for that conversion(eg. hours)
+hours = ["hrs", "hr", "hours", "hour"]
+minutes = ["min","mins", "minutes"]
+seconds = ["sec", "secs", "second", "seconds"]
+distance = ["km","mm","m","cm"]
+time = ["hours", "hour", "hr", "hrs", "min", "minutes", "sec", "seconds", "mins"]
+weight = ["g","kg","mg"]
+valid_units = ["km", "mm", "cm", "m", "kg", "g", "mg" , "min", "minutes", "sec", "seconds", "hours", "hrs", "hour", "hr", "mins"]
+for_distance = ["distance", "d", "dis", "Distance"]
+for_time = ["time", "t", "Time"]
+for_weights = ["Weights", "weight", "weights", "w", "Weights"]
 main_routine()       
