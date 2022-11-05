@@ -20,7 +20,7 @@ def convert_to(number, existing_unit, conversion_unit):
     dis = {
         "cm" :  1,
         "mm" :  1/10,
-        "km" :  100000,
+        "km" :  100000, 
         "m" :  100,}
     # base unit is minutes
     time = {
@@ -89,9 +89,9 @@ def main_routine ():
     print("****************************************")
     instruction = input("Press <enter> for instructions or any other key to skip: ")
     read_instructions = """
-    Ultimate Conversion Calculator is extremely efficent for
-    calculating things such as distance(km, cm, m, mm), 
-    time(hrs, min, sec) and weights(g, kg, mg)"
+Ultimate Conversion Calculator is extremely efficent for
+calculating things such as distance(km, cm, m, mm), 
+time(hrs, min, sec) and weights(g, kg, mg)"
      """
     if instruction == "":
         print(read_instructions)
